@@ -15,7 +15,7 @@ from timeit import default_timer as timer
 from pathlib import Path
 
 
-class TinyVGG(nn.Module):
+class CNN(nn.Module):
     def __init__(self,
                  input_shape: int,
                  hidden_units: int,
@@ -398,9 +398,9 @@ if __name__ == "__main__":
 
     torch.manual_seed(RANDOM_SEED)
     torch.mps.manual_seed(RANDOM_SEED)
-    model = TinyVGG(input_shape=NUM_FEATURES,
-                    hidden_units=HIDDEN_UNITS,
-                    output_shape=len(class_names))
+    model = CNN(input_shape=NUM_FEATURES,
+                hidden_units=HIDDEN_UNITS,
+                output_shape=len(class_names))
 
     summary(model, input_size=[BATCH_SIZE, NUM_FEATURES, IMAGE_SIZE, IMAGE_SIZE])
 
@@ -453,9 +453,9 @@ if __name__ == "__main__":
     # Create a new instance
     torch.manual_seed(RANDOM_SEED)
 
-    loaded_model = TinyVGG(input_shape=NUM_FEATURES,
-                           hidden_units=HIDDEN_UNITS,
-                           output_shape=len(class_names))
+    loaded_model = CNN(input_shape=NUM_FEATURES,
+                       hidden_units=HIDDEN_UNITS,
+                       output_shape=len(class_names))
 
     # Load in the save state_dict()
     loaded_model.load_state_dict(torch.load(f=MODEL_SAVE_PATH))

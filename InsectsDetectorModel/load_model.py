@@ -15,9 +15,10 @@ from mlxtend.plotting import plot_confusion_matrix
 from torch.utils.data import DataLoader
 from tqdm.auto import tqdm
 import torchvision
+from torchviz import make_dot
 
 
-class TinyVGG(nn.Module):
+class CNN(nn.Module):
     def __init__(self,
                  input_shape: int,
                  hidden_units: int,
@@ -218,9 +219,9 @@ if __name__ == "__main__":
 
     test_dir = image_path / "test"
 
-    loaded_model = TinyVGG(input_shape=3,
-                           hidden_units=100,
-                           output_shape=14)
+    loaded_model = CNN(input_shape=3,
+                       hidden_units=100,
+                       output_shape=14)
 
     # Load in the save state_dict()
     loaded_model.load_state_dict(torch.load(f=MODEL_SAVE_PATH))
